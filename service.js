@@ -3,7 +3,7 @@
 var seneca = require('seneca');
 
 seneca()
-    .use('mail')
+    .use('mail', {transport: 'stub'})
     .ready(function(error) {
         if (error) return console.log(err);
     })

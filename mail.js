@@ -4,10 +4,22 @@
 
 'use strict';
 
-var nodemailer = require('nodemailer');
+var nodemailer = require('nodemailer'),
+    winston = require('winston'),
+    logger = new (winston.Logger)({
+        transports: [
+            new (winston.transports.File)({
+                name: 'sent_mail',
+                filename: './logs/sent_mail.log',
+                level: 'info',
+                json: false
+            })
+        ]
+    });
 
 var transports = {
-    test: require('nodemailer-stub-transport')()
+    test: require('nodemailer-stub-transport')(),
+    stub: require('nodemailer-stub-transport')()
 };
 
 module.exports = function mail(options) {
@@ -17,12 +29,15 @@ module.exports = function mail(options) {
     // SEND
     seneca.add('service:mail,action:send', function (msg, respond) {
         var fields = {
-            from: msg.from,
+            from: msg.from || 'no-reply@venture-game-mail-service',
             to: msg.to,
             subject: msg.subject,
             text: msg.text
         };
         sender.sendMail(fields, function(error, info){
+            if (options.transport != 'test' && !error) {
+                logger.info('message sent', {id: info.messageId, data: fields});
+            }
             respond(error, info);
         });
     });
