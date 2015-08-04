@@ -1,0 +1,35 @@
+{
+  "name": "mail_service",
+  "version": "0.0.0",
+  "description": "send/receive emails",
+  "main": "service.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "~3.2.0",
+    "nodemailer-stub-transport": "~1.0.0",
+    "seneca": "~0.6.4",
+    "mocha": "~2.2.5",
+    "nodemailer": "~1.4.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.2.5"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/venture-game/mail_service.git"
+  },
+  "keywords": [
+    "seneca",
+    "nodemailer"
+  ],
+  "author": "Max Korinets",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/venture-game/mail_service/issues"
+  }
+}
