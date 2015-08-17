@@ -19,7 +19,7 @@ var nodemailer = require('nodemailer'),
 
 var transports = {
     test: require('nodemailer-stub-transport')(),
-    stub: require('nodemailer-stub-transport')()
+    pickup: require('nodemailer-pickup-transport')({directory: './mail'})
 };
 
 module.exports = function mail(options) {
