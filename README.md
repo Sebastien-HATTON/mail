@@ -1,2 +1,2 @@
-# mail_service
+# mail
 send/receive emails
